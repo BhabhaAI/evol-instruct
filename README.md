@@ -20,7 +20,7 @@ Available Models - Gemini, GPT-3.5-Turbo
 
 `pip install -r requirements.txt`
 
-### Run Code
+### Run Code - `main.py`
 
 1. Change Input Parameters  
    `dataset_name` - Enter Dataset name in HuggingFace format  
