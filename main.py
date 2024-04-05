@@ -12,7 +12,7 @@ from breadth import createBreadthPrompt
 dataset_name = 'yahma/alpaca-cleaned'  # Paste HF Dataset name
 api_key = ''  
 # USE either 'Gemini' or 'ChatGPT' - Uncomment to use the model
-# model = Gemini(api_key)  
+model = Gemini(api_key)  
 # model = ChatGPT(api_key)
 
 
