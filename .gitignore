@@ -3,3 +3,4 @@ test.ipynb
 __pycache__/
 new_dataset.json
 .venv/
+new.py

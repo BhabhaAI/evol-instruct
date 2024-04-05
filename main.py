@@ -7,7 +7,6 @@ import pandas as pd
 from depth import createConstraintsPrompt, createDeepenPrompt, createConcretizingPrompt, createReasoningPrompt
 from breadth import createBreadthPrompt
 
-
 ### INPUT PARAMETERS
 dataset_name = 'yahma/alpaca-cleaned'  # Paste HF Dataset name
 api_key = ''  
@@ -25,24 +24,18 @@ df['temp'] = df['instruction'].str.strip() + '\r\n'+ df['input'].str.strip()
 evol_objs = []
 
 for instruction in df['temp']:
-	evol_prompts = []
-
-	evol_prompts.append(createConstraintsPrompt(instruction))
-	evol_prompts.append(createDeepenPrompt(instruction))
-	evol_prompts.append(createConcretizingPrompt(instruction))
-	evol_prompts.append(createReasoningPrompt(instruction))
-	evol_prompts.append(createBreadthPrompt(instruction))
+	evol_prompts = [createConstraintsPrompt(instruction),
+					createDeepenPrompt(instruction),
+					createConcretizingPrompt(instruction),
+					createReasoningPrompt(instruction),
+					createBreadthPrompt(instruction)]
 
 	selected_evol_prompt = random.choice(evol_prompts)
 
 	evol_instruction = model.call_api(selected_evol_prompt)
 	answer = model.call_api(evol_instruction)
-	object = {"instruction":evol_instruction,"output":answer}
-	evol_objs.append(object)
+
+	evol_objs.append({"instruction":evol_instruction,"output":answer})
 
 with open('new_dataset.json', 'w') as f:	
 	json.dump(evol_objs, f, indent=4)
-
-
-
-
