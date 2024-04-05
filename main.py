@@ -17,11 +17,12 @@ model = Gemini(api_key)  # USE either 'Gemini' or 'ChatGPT'
 dataset = load_dataset(dataset_name, split='train')
 df = pd.DataFrame(dataset)
 
+### CONFIGURE INSTRUCTION PROMPTS
 df['temp'] = df['instruction'].str.strip() + '\r\n'+ df['input'].str.strip()
+
 evol_objs = []
 
-
-for instruction in df['temp'][:10]:
+for instruction in df['temp']:
 	evol_prompts = []
 
 	evol_prompts.append(createConstraintsPrompt(instruction))
