@@ -20,10 +20,10 @@ Available Models - Gemini, GPT-3.5-Turbo
 
 `pip install -r requirements.txt`
 
-### Run Code
+### Run Code - `main.py`
 
-1. Change Input Parameters
-   `dataset_name` - Enter Dataset name in HuggingFace format
-   `api_key` - Enter respective model api_key
-   `model` - Choose model (either Gemini or ChatGPT)
-2. Configure Instruction prompts as per the dataset
+1. Change Input Parameters  
+   `dataset_name` - Enter Dataset name in HuggingFace format  
+   `api_key` - Enter respective model api_key  
+   `model` - Choose model (either Gemini or ChatGPT)  
+2. Configure Instruction prompts as per the dataset  
