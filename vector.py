@@ -8,7 +8,7 @@ from breadth import createBreadthPrompt
 
 ### INPUT PARAMETERS
 dataset_name = 'yahma/alpaca-cleaned'  # Paste HF Dataset name
-api_key = 'AIzaSyCFqknsY8TM3l4qfL0EsoPuQdldQ2HcjCE'  
+api_key = ''  
 # USE either 'Gemini' or 'ChatGPT' - Uncomment to use the model
 model = Gemini(api_key)  
 # model = ChatGPT(api_key)
@@ -36,7 +36,7 @@ df['evol'] = df.apply(random_choice, axis=1)
 ### Synthetic Generation
 
 outdf = pd.DataFrame({'instruction':[], 'answer':[]})
-outdf['instruction'] = df['evol'][:10].apply(model.call_api)
+outdf['instruction'] = df['evol'].apply(model.call_api)
 outdf['answer'] = outdf['instruction'].apply(model.call_api)
 outdf.to_json('new_dataset.json', indent = 4)
 
