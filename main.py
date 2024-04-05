@@ -10,8 +10,10 @@ from breadth import createBreadthPrompt
 
 ### INPUT PARAMETERS
 dataset_name = 'yahma/alpaca-cleaned'  # Paste HF Dataset name
-api_key = 'AIzaSyCFqknsY8TM3l4qfL0EsoPuQdldQ2HcjCE'  
-model = Gemini(api_key)  # USE either 'Gemini' or 'ChatGPT'
+api_key = ''  
+# USE either 'Gemini' or 'ChatGPT' - Uncomment to use the model
+# model = Gemini(api_key)  
+# model = ChatGPT(api_key)
 
 
 dataset = load_dataset(dataset_name, split='train')
