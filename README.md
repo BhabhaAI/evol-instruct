@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ### Overview of Evol-Instruct
 
 [Evol-Instruct](https://arxiv.org/abs/2304.12244) is a novel method using LLMs instead of humans to automatically mass-produce open-domain instructions of various difficulty levels and skills range, to improve the performance of LLMs. You can easily embark on your own evolutionary journey with the [Evol Script](https://github.com/omkar-334/Evol-Instruct).
@@ -28,6 +27,3 @@ Available Models - Gemini, GPT-3.5-Turbo
    `api_key` - Enter respective model api_key  
    `model` - Choose model (either Gemini or ChatGPT)  
 2. Configure Instruction prompts as per the dataset  
-=======
-# evol-instruct
->>>>>>> 82d8908bcc78e36fb8f512f8bda1de28d8fa5522
