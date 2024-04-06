@@ -32,9 +32,7 @@ Query Parameters
 6. `rows` (Optional) - Number of rows to be generated.
 7. `split` (Optional) - Dataset split. Defaults to `train`.
 
-### Run Code
+### Run API
 
-1. Flask
-   `flask run`
-2. FastAPI
-   `uvicorn fast:app --reload`
+1. Flask - `flask run`
+2. FastAPI - `uvicorn fast:app --reload`
