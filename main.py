@@ -4,7 +4,7 @@ import random
 from datasets import load_dataset
 from models import Gemini, ChatGPT
 import pandas as pd
-from depth import createConstraintsPrompt, createDeepenPrompt, createConcretizingPrompt, createReasoningPrompt
+from prompts import createConstraintsPrompt, createDeepenPrompt, createConcretizingPrompt, createReasoningPrompt
 from breadth import createBreadthPrompt
 
 ### INPUT PARAMETERS
