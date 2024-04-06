@@ -1,4 +1,3 @@
-import json
 import random
 
 from datasets import load_dataset
@@ -39,18 +38,17 @@ def evol_function():
 
     for instruction in df['temp'][:int(rows)]:
         evol_prompts = create_prompts(instruction)
-
         selected_evol_prompt = random.choice(evol_prompts)
 
         evol_instruction = model.call_api(selected_evol_prompt)
         answer = model.call_api(evol_instruction)
 
         evol_dataset.append({"instruction":evol_instruction,"output":answer})
-        
+
     return jsonify(evol_dataset)
     
 if __name__=="__main__":
-    app.run()
+    app.run(port = 8000)
     
     
     

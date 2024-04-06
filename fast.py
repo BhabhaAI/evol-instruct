@@ -1,8 +1,7 @@
-import json
-import random
+import random, time
 
 from datasets import load_dataset
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 import pandas as pd
 from pydantic import BaseModel
 
@@ -23,7 +22,7 @@ class Params(BaseModel):
 app = FastAPI()
 
 @app.get("/")
-async def evol(params = Params):
+def evol(params = Depends(Params)):
     model_name = params.model
     key = params.key
     dataset_name = params.dataset
@@ -44,12 +43,10 @@ async def evol(params = Params):
 
     for instruction in df['temp'][:rows]:
         evol_prompts = create_prompts(instruction)
-
         selected_evol_prompt = random.choice(evol_prompts)
 
         evol_instruction = model.call_api(selected_evol_prompt)
         answer = model.call_api(evol_instruction)
 
         evol_dataset.append({"instruction":evol_instruction,"output":answer})
-    
     return evol_dataset

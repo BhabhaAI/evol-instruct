@@ -20,10 +20,21 @@ Available Models - Gemini, GPT-3.5-Turbo
 
 `pip install -r requirements.txt`
 
-### Run Code - `main.py`
+### API Endpoint
 
-1. Change Input Parameters  
-   `dataset_name` - Enter Dataset name in HuggingFace format  
-   `api_key` - Enter respective model api_key  
-   `model` - Choose model (either Gemini or ChatGPT)  
-2. Configure Instruction prompts as per the dataset  
+Query Parameters
+
+1. `model` - Model name (either `gemini` or `chatgpt`)
+2. `key` - Api Key
+3. `dataset` - Dataset name in Huggingface Format
+4. `instruction` - Name of the dataset's instruction prompt column
+5. `input` (Optional) - Name of the dataset's input prompt column.
+6. `rows` (Optional) - Number of rows to be generated.
+7. `split` (Optional) - Dataset split. Defaults to `train`.
+
+### Run Code
+
+1. Flask
+   `flask run`
+2. FastAPI
+   `uvicorn fast:app --reload`

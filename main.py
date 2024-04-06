@@ -2,10 +2,10 @@ import json
 import random
 
 from datasets import load_dataset
-from models import Gemini, ChatGPT
 import pandas as pd
-from prompts import createConstraintsPrompt, createDeepenPrompt, createConcretizingPrompt, createReasoningPrompt
-from breadth import createBreadthPrompt
+
+from models import Gemini, ChatGPT
+from prompts import create_prompts
 
 ### INPUT PARAMETERS
 dataset_name = 'yahma/alpaca-cleaned'  # Paste HF Dataset name
@@ -14,9 +14,7 @@ api_key = ''
 model = Gemini(api_key)  
 # model = ChatGPT(api_key)
 
-
-dataset = load_dataset(dataset_name, split='train')
-df = pd.DataFrame(dataset)
+df = pd.DataFrame(load_dataset(dataset_name, split='train'))
 
 ### CONFIGURE INSTRUCTION PROMPTS
 df['temp'] = df['instruction'].str.strip() + '\r\n'+ df['input'].str.strip()
@@ -24,11 +22,7 @@ df['temp'] = df['instruction'].str.strip() + '\r\n'+ df['input'].str.strip()
 evol_objs = []
 
 for instruction in df['temp']:
-	evol_prompts = [createConstraintsPrompt(instruction),
-					createDeepenPrompt(instruction),
-					createConcretizingPrompt(instruction),
-					createReasoningPrompt(instruction),
-					createBreadthPrompt(instruction)]
+	evol_prompts = create_prompts(instruction)
 
 	selected_evol_prompt = random.choice(evol_prompts)
 
