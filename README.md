@@ -34,5 +34,4 @@ Query Parameters
 
 ### Run API
 
-1. Flask - `flask run`
-2. FastAPI - `uvicorn fast:app --reload`
+FastAPI - `uvicorn app:app --reload`
