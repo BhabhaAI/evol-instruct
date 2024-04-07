@@ -1,19 +1,18 @@
 import time
+import requests
+import os
+
 from ratelimit import limits, sleep_and_retry
 import google.generativeai as genai
-
 import openai
-import time
-import requests
 
 class Gemini():
     RATE_LIMIT = 45
     PERIOD = 60
 
     def __init__(self, api_key=None, model_name="gemini-pro"):
-
         if api_key is None:
-            raise Exception("No API key found. Please provide an API key or set the GEMINI_API_KEY environment variable.")
+            api_key = os.getenv('GEMINI_KEY')
 
         # Configure generative AI
         genai.configure(api_key=api_key)
@@ -25,19 +24,6 @@ class Gemini():
     @sleep_and_retry
     @limits(calls=RATE_LIMIT, period=PERIOD)
     def call_api(self, prompt, retry_count=0, max_retries=3):
-
-        """
-        Call the generative AI API with rate limiting and retry logic.
-
-        Args:
-            prompt (str): The input prompt for the API.
-            retry_count (int): The current retry count.
-            max_retries (int): The maximum number of retries.
-
-        Returns:
-            str: The API response.
-        """
-
         if retry_count < max_retries:
             try:
                 response = self.model.generate_content(prompt, generation_config=self.generation_config, safety_settings=self.safety_settings)
@@ -64,6 +50,8 @@ class Gemini():
 
 class ChatGPT():
     def __init__(self, api_key=None, model_name="gpt-3.5-turbo"):
+        if api_key is None:
+            api_key = os.getenv('CHATGPT_KEY')
         self.client = openai.OpenAI(api_key = api_key)
         
     def get_completion(self, prompt):
@@ -105,10 +93,10 @@ class ChatGPT():
 
     def call_api(self, ins):
         success = False
-        re_try_count = 15
+        retry_count = 5
         ans = ''
-        while not success and re_try_count >= 0:
-            re_try_count -= 1
+        while not success and retry_count >= 0:
+            retry_count -= 1
             try:
                 ans = self.get_completion(ins)
                 success = True

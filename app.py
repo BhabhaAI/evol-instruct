@@ -1,4 +1,6 @@
-import random, time
+import random
+from dotenv import load_dotenv 
+from typing import Optional
 
 from datasets import load_dataset
 from fastapi import FastAPI, Depends
@@ -8,16 +10,17 @@ from pydantic import BaseModel
 from models import Gemini, ChatGPT
 from prompts import create_prompts
 
+load_dotenv()
 model_map = {'chatgpt' : ChatGPT, 'gemini' : Gemini}
 
 class Params(BaseModel):
     model: str
-    key: str
     dataset: str
     instruction: str
-    input: str = None
-    rows: int = -1
-    split : str = 'train'
+    key: Optional[str] = None
+    input: Optional[str] = None
+    rows: Optional[int] = -1
+    split : Optional[str] = 'train'
 
 app = FastAPI()
 
@@ -50,3 +53,7 @@ def evol(params = Depends(Params)):
 
         evol_dataset.append({"instruction":evol_instruction,"output":answer})
     return evol_dataset
+
+@app.get('/dummy')
+def evol(params=Depends(Params)):
+    return params
