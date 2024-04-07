@@ -20,7 +20,7 @@ Available Models - Gemini, GPT-3.5-Turbo
 
 `pip install -r requirements.txt`
 
-### API Endpoint
+### API Endpoint - /
 
 Query Parameters
 
@@ -31,6 +31,10 @@ Query Parameters
 5. `input` (Optional) - Name of the dataset's input prompt column.
 6. `rows` (Optional) - Number of rows to be generated.
 7. `split` (Optional) - Dataset split. Defaults to `train`.
+
+### Dummy Endpoint - /dummy/
+
+Use this endpoint to test query parameters
 
 ### Run API
 
